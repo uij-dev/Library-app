@@ -32,18 +32,66 @@ html {
   --main-bg-clr: #f0f4f8;
 
   --hdr-font-stack: 'playfair', Georgia, serif;
+  
+  --shadow: 0 5px 10px 0 rgba(0,0,0,.2); 
+  --hdr-gradient: to bottom right, rgba(0,119,182,0.8), rgba(255,255,255,0.886);
+  
+  --m-sm: .3rem;
+  --m-md: 2.7rem;
+  --m-sm: 3.7rem;
+  
+  
+  --p-sm: 1.5rem;
+  --p-md: 2.5rem;
+  --p-lg: 3rem;
+  
 }
-
 /* =================
     UTILITY CLASSES
    ================= */
-
+.center-txt{text-align: center;}
+.p-4{padding: var(--p-md);}
+.add-shadow {box-shadow: var(--shadow);}
+.center-to-pg{margin: 0 auto};
 
 /* =================
     BASE ELEMENT STYLES
    ================= */
-
+body{
+  font-family: var(--font-stack);
+  font-size: 1.6rem;
+  color: var(--bdy-text-clr);
+  font-weight: normal;
+  line-height: 1.5;
+  font-synthesis: none;
+  height: 100vh;
+}
 /* =================
     COMPONENT STYLES
    ================= */
+.header {
+  background: linear-gradient(var(--hdr-gradient)), url('../images/header-img.jpg') no-repeat right top/contain;
+  font-family: var(--hdr-font-stack);
+  width: min(1140px, 90%);
+}
+.pg-title{
+  font-weight: 500;
+  font-size: 3.5rem;
+  img {
+    width: 5rem;
+    height: 5rem;
+    margin-right: .3rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
