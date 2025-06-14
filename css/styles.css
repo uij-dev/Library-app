@@ -1,0 +1,49 @@
+/* =================
+    RESETS
+   ================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style: none;
+}
+img {
+  display: inline-block;
+  width: 100%;
+}
+html {
+  font-size: 62.5%;
+}
+/* =================
+    VARIABLES
+   ================= */
+:root {
+  --font-stack: "roboto", system-ui, sans-serif;
+  --bdy-txt-clr: #222;
+  --accent-clr: #0077b6;
+  --main-bg-clr: #f0f4f8;
+
+  --hdr-font-stack: 'playfair', Georgia, serif;
+}
+
+/* =================
+    UTILITY CLASSES
+   ================= */
+
+
+/* =================
+    BASE ELEMENT STYLES
+   ================= */
+
+/* =================
+    COMPONENT STYLES
+   ================= */
+
