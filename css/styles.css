@@ -34,17 +34,18 @@ html {
   --hdr-font-stack: 'playfair', Georgia, serif;
   
   --shadow: 0 5px 10px 0 rgba(0,0,0,.2); 
-  --hdr-gradient: to bottom right, rgba(0,119,182,0.8), rgba(255,255,255,0.886);
+  --hdr-gradient: to bottom right, rgba(0,119,182,0.8), rgba(255,255,255,0.8);
   
-  --m-sm: .3rem;
-  --m-md: 2.7rem;
-  --m-sm: 3.7rem;
+  --book-bg: #fff;
+  
+  --m-sm: .5rem;
+  --m-md: 1.5rem;
+  --m-lg: 2.7rem;
   
   
   --p-sm: 1.5rem;
   --p-md: 2.5rem;
-  --p-lg: 3rem;
-  
+  --p-lg: 3.5rem;
 }
 /* =================
     UTILITY CLASSES
@@ -52,11 +53,15 @@ html {
 .center-txt{text-align: center;}
 .p-4{padding: var(--p-md);}
 .add-shadow {box-shadow: var(--shadow);}
-.center-to-pg{margin: 0 auto};
+.center-to-pg{margin: 0 auto;}
+.capitalize {text-transform: capitalize}
 
 /* =================
     BASE ELEMENT STYLES
    ================= */
+body, html{
+  height: 100%;
+}
 body{
   font-family: var(--font-stack);
   font-size: 1.6rem;
@@ -64,7 +69,6 @@ body{
   font-weight: normal;
   line-height: 1.5;
   font-synthesis: none;
-  height: 100vh;
 }
 /* =================
     COMPONENT STYLES
@@ -80,18 +84,79 @@ body{
   img {
     width: 5rem;
     height: 5rem;
-    margin-right: .3rem;
+    margin-right: var(--m-sm);
   }
 }
-
-
-
-
-
-
-
-
-
+.main{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 25rem);
+  grid-gap: var(--m-md);
+  align-content: start;
+  background: var(--main-bg-clr);
+  justify-content: center;
+  align-items: start;
+  width: min(1140px, 90%);
+  height: 100%;
+}
+.book{
+  padding: var(--p-sm);
+  background: #fff;
+  border-radius: .5rem;
+}
+.book-cover-wrapper{
+  height: 20rem;
+  border-radius: inherit;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: var(--m-md);
+  &::after{
+    content: attr(data-read);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 3rem;
+    color: #0077b6;
+    position: absolute;
+    background: rgba(0, 0, 0, .7);
+    inset: 0px;
+  }
+  &:hover::after{
+    display: none;
+  }
+  img{
+    transform: scale(2);
+    transition: transform .3s ease-out;
+  }
+  &:hover > img{
+    transform: scale(1);
+  }
+}
+.book-info{
+  .star-ratings{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--m-sm);
+    gap: .5rem;
+  }
+  .star-icon{
+    width: 2rem;
+    height: 2rem;
+    fill: #ccc;
+    &.fill{
+    fill: #0077b6;
+    }
+  }
+  p{
+    font-weight: bold;
+  }
+  p > span{
+    font-weight: normal;
+  }
+  p:not(:last-of-type){
+    margin-bottom: var(--m-sm);
+  }
+}
 
 
 
