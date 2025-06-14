@@ -31,18 +31,18 @@ html {
   --accent-clr: #0077b6;
   --main-bg-clr: #f0f4f8;
 
-  --hdr-font-stack: 'playfair', Georgia, serif;
-  
-  --shadow: 0 5px 10px 0 rgba(0,0,0,.2); 
-  --hdr-gradient: to bottom right, rgba(0,119,182,0.8), rgba(255,255,255,0.8);
-  
-  --book-bg: #fff;
-  
-  --m-sm: .5rem;
+  --hdr-font-stack: "playfair", Georgia, serif;
+
+  --shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+  --hdr-gradient: to bottom right, rgba(0, 119, 182, 0.8),
+    rgba(255, 255, 255, 0.8);
+    
+    --book-bg: #fff;
+    
+  --m-sm: 0.5rem;
   --m-md: 1.5rem;
   --m-lg: 2.7rem;
-  
-  
+
   --p-sm: 1.5rem;
   --p-md: 2.5rem;
   --p-lg: 3.5rem;
@@ -50,19 +50,30 @@ html {
 /* =================
     UTILITY CLASSES
    ================= */
-.center-txt{text-align: center;}
-.p-4{padding: var(--p-md);}
-.add-shadow {box-shadow: var(--shadow);}
-.center-to-pg{margin: 0 auto;}
-.capitalize {text-transform: capitalize}
+.center-txt {
+  text-align: center;
+}
+.p-4 {
+  padding: var(--p-md);
+}
+.add-shadow {
+  box-shadow: var(--shadow);
+}
+.center-to-pg {
+  margin: 0 auto;
+}
+.capitalize {
+  text-transform: capitalize;
+}
 
 /* =================
     BASE ELEMENT STYLES
    ================= */
-body, html{
+body,
+html {
   height: 100%;
 }
-body{
+body {
   font-family: var(--font-stack);
   font-size: 1.6rem;
   color: var(--bdy-text-clr);
@@ -73,12 +84,15 @@ body{
 /* =================
     COMPONENT STYLES
    ================= */
+
 .header {
-  background: linear-gradient(var(--hdr-gradient)), url('../images/header-img.jpg') no-repeat right top/contain;
-  font-family: var(--hdr-font-stack);
-  width: min(1140px, 90%);
+  background: linear-gradient(var(--hdr-gradient)),
+    url("../images/header-img.jpg") no-repeat right top/contain;
+    font-family: var(--hdr-font-stack);
+    width: min(1140px, 90%);
+    position: relative;
 }
-.pg-title{
+.pg-title {
   font-weight: 500;
   font-size: 3.5rem;
   img {
@@ -87,7 +101,40 @@ body{
     margin-right: var(--m-sm);
   }
 }
-.main{
+
+.btn {
+  --btn-bg: none;
+  background: var(--btn-bg);
+  border: 1px solid #222;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.btn.add-btn {
+  --btn-bg:var(--accent-clr);
+  padding: .5rem;
+  position: fixed;
+  z-index: 1;
+  bottom: 1rem;
+  left: 1rem;
+  color: #f0f4f8;
+  font-weight: bold;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  img {
+    width: 4rem;
+  }
+  &:hover, &:focus-visible {
+    --btn-bg: rgba(0, 118, 182, 0.7);
+  }
+  &:active {
+    --btn-bg: rgba(0, 118, 182, 0.8);
+  }
+}
+
+.main {
   display: grid;
   grid-template-columns: repeat(auto-fit, 25rem);
   grid-gap: var(--m-md);
@@ -98,18 +145,19 @@ body{
   width: min(1140px, 90%);
   height: 100%;
 }
-.book{
+
+.book {
   padding: var(--p-sm);
   background: #fff;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
-.book-cover-wrapper{
+.book-cover-wrapper {
   height: 20rem;
   border-radius: inherit;
   overflow: hidden;
   position: relative;
   margin-bottom: var(--m-md);
-  &::after{
+  &::after {
     content: attr(data-read);
     display: flex;
     justify-content: center;
@@ -118,45 +166,42 @@ body{
     font-size: 3rem;
     color: #0077b6;
     position: absolute;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, 0.7);
     inset: 0px;
   }
-  &:hover::after{
+  &:hover::after {
     display: none;
   }
-  img{
+  img {
     transform: scale(2);
-    transition: transform .3s ease-out;
+    transition: transform 0.3s ease-out;
   }
-  &:hover > img{
+  &:hover > img {
     transform: scale(1);
   }
 }
-.book-info{
-  .star-ratings{
+.book-info {
+  .star-ratings {
     display: flex;
     justify-content: flex-end;
     margin-bottom: var(--m-sm);
-    gap: .5rem;
+    gap: 0.5rem;
   }
-  .star-icon{
+  .star-icon {
     width: 2rem;
     height: 2rem;
     fill: #ccc;
-    &.fill{
-    fill: #0077b6;
+    &.fill {
+      fill: #0077b6;
     }
   }
-  p{
+  p {
     font-weight: bold;
   }
-  p > span{
+  p > span {
     font-weight: normal;
   }
-  p:not(:last-of-type){
+  p:not(:last-of-type) {
     margin-bottom: var(--m-sm);
   }
 }
-
-
-
