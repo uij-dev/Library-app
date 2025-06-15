@@ -8,116 +8,95 @@
   <link rel="stylesheet" href="./css/font-faces.css" />
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="icon" type="image/svg+xml" href="./images/closed-book.svg" />
+  <script src="./script.js" defer></script>
 </head>
 
 <body>
-  <header class="header p-4 add-shadow center-to-pg">
+  <header class="header ">
     <button class="btn add-btn">
-      <img src="./images/plus-circle.svg" alt="Add New Book Icon">
+      <img class="add-btn__img" src="./images/plus-circle.svg" alt="Add New Book Icon">
       Add Book
     </button>
 
-    <h1 class="pg-title center-txt">
+    <h1 class="pg-title ">
       <img src="./images/closed-book.svg" />Quick pick libs.
     </h1>
   </header>
-  <main class="main center-to-pg p-4">
-    <div class="book add-shadow capitalize">
-      <div class="book-cover-wrapper" data-read="read">
-        <img src="./images/harry-porter-cover.jpg" alt="" class="book-cover">
+
+  <main class="grid">
+    <div class="book">
+      <div class="book__cover" data-read="read">
+        <img class="book__img" src="./images/harry-porter-cover.jpg" alt="" class="book-cover">
       </div>
-      <div class="book-info">
-        <div class="star-ratings">
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+
+      <div class="book__info">
+        <div class="book__star-ratings">
+          <svg class="book__star fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
           </svg>
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <svg class="book__star fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
           </svg>
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <svg class="book__star fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
           </svg>
-          <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <svg class="book__star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
           </svg>
-          <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+          <svg class="book__star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
           </svg>
         </div>
-        <p class="author-name">author name: <span></span></p>
-        <p class="book-title">title: <span></span></p>
-        <p class="book-pages">pages: <span></span></p>
+        <p class="book__entry">author name: <span class="author-name">justice</span></p>
+        <p class="book__entry">title: <span class="book-title">rich</span></p>
+        <p class="book__entry">pages: <span class="book-pages">245</span></p>
       </div>
     </div>
-    <div class="book add-shadow capitalize">
-      <div class="book-cover-wrapper" data-read="read">
-        <img src="./images/harry-porter-cover.jpg" alt="" class="book-cover">
-      </div>
-      <div class="book-info">
-        <div class="star-ratings">
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
+
+    <dialog class="modal" closedby="none">
+      <div class="modal__bg"></div>
+      <form class="form" action="#" method="#">
+        <div class="form__box">
+          <img class="form__img" src="./images/opened-book.svg" alt="Opened Book Icon">
+          <p class="form__para">Field marked with and asterisk (*) are requried and must be filled out before submitting the form.</p>
         </div>
-        <p class="author-name">author name: <span></span></p>
-        <p class="book-title">title: <span></span></p>
-        <p class="book-pages">pages: <span></span></p>
-      </div>
-    </div>
-    <div class="book add-shadow capitalize">
-      <div class="book-cover-wrapper" data-read="read">
-        <img src="./images/harry-porter-cover.jpg" alt="" class="book-cover">
-      </div>
-      <div class="book-info">
-        <div class="star-ratings">
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
-          <svg class="star-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-            <path
-              d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z" />
-          </svg>
+        <div>
+          <label for="author-name">author name 
+            <span class="form__requied-mark">*</span>
+            </label>
+          <input id="author-name" required type="text">
         </div>
-        <p class="author-name">author name: <span></span></p>
-        <p class="book-title">title: <span></span></p>
-        <p class="book-pages">pages: <span></span></p>
-      </div>
-    </div>
+        <div>
+          <label for="book-title">book title 
+            <span class="form__requied-mark">*</span>
+            </label>
+          <input id="book-title" required type="text">
+        </div>
+        <div>
+          <label for="book-pages">pages
+            <span class="form__requied-mark">*</span>
+          </label>
+          <input id="book-pages" required pattern="[0-9]+" title="This filled takes only digits from 0 to 9" type="tel">
+        </div>
+        <div>
+          <label for="read">read</label>
+          <input id="read" type="checkbox">
+        </div>
+        <div>
+          <label for="book-cover">upload book cover</label>
+          <input id="book-cover" type="file" disabled>
+        </div>
+        <div class="form-btns">
+          <button class="btn form__btn form__add-btn" type="submit">Add Book</button>
+          <button class="btn form__btn form__cancel-btn">Cancel</button>
+        </p>
+      </form>
+    </dialog>
   </main>
 </body>
 
