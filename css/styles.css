@@ -220,6 +220,10 @@ body {
   border: 1rem;
   border-radius: 1rem;
   position: relative;
+  
+  &::backdrop{
+    backdrop-filter: blur(5px);
+  }
 }
 
 .form {
