@@ -13,7 +13,7 @@
 
 <body>
   <header class="header ">
-    <button class="btn add-btn">
+    <button class="btn add-book-btn">
       <img class="add-btn__img" src="./images/plus-circle.svg" alt="Add New Book Icon">
       Add Book
     </button>
@@ -66,7 +66,7 @@
       <form class="form" action="#" method="#">
         <div class="form__box">
           <img class="form__img" src="./images/opened-book.svg" alt="Opened Book Icon">
-          <p class="form__para">Field marked with and asterisk (*) are requried and must be filled out before submitting the form.</p>
+          <p class="form__para">Field marked with and asterisk (*) are requried and must be filled out before adding a new book.</p>
         </div>
         <div>
           <label for="author-name">author name 
@@ -84,19 +84,19 @@
           <label for="book-pages">pages
             <span class="form__requied-mark">*</span>
           </label>
-          <input id="book-pages" required pattern="[0-9]+" title="This filled takes only digits from 0 to 9" type="tel">
+          <input id="book-pages" required pattern="[0-9]+" title="This field takes only digits from 0 to 9" type="tel">
         </div>
         <div>
           <label for="read">read</label>
           <input id="read" type="checkbox">
         </div>
         <div>
-          <label for="book-cover">upload book cover</label>
+          <label for="book-cover">upload book cover (coming soon)</label>
           <input id="book-cover" type="file" disabled>
         </div>
         <div class="form-btns">
           <button class="btn form__btn form__add-btn" type="submit">Add Book</button>
-          <button class="btn form__btn form__cancel-btn">Cancel</button>
+          <button type="submit" class="btn form__btn form__cancel-btn">Cancel</button>
         </p>
       </form>
     </dialog>

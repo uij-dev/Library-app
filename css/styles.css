@@ -103,7 +103,7 @@ body {
   }
 }
 
-.add-btn {
+.add-book-btn {
   position: fixed;
   z-index: 1;
   bottom: 1rem;
