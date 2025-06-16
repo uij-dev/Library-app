@@ -1,4 +1,4 @@
-function CreateBook(author, title, pages, read, coverPath) {
+function CreateBook(author, title, pages, read, coverPath, ratings) {
   if (!new.target) {
     throw Error('The "this" key is required to run a constructor')
   }
@@ -8,69 +8,53 @@ function CreateBook(author, title, pages, read, coverPath) {
   this.pages = pages;
   this.read = read;
   this.coverPath = coverPath;
+  this.ratings = ratings;
 }
-CreateBook.prototype.updateReadStatus = function () {
-  this.read = !this.read;
+CreateBook.prototype.updateBook = function (property, to) {
+  this[property] = to;
 }
 
 const grid = document.querySelector('.grid');
-const bookTemplate = document.querySelector(".book-template");
+const bookCardTemplate = document.querySelector(".book-template");
 
 const bookList = [
-  new CreateBook('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg'),
-  new CreateBook('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp'),
-  new CreateBook('Jody Houser', 'Stranger Things: The Other Side (Graphic Novel)', 95, true, './images/stranger-things.jpg'),
-  new CreateBook('Dale Carnegie', 'How To Win Friends and Influence People', 520, true, './images/how-to-make-friends-cover.webp'),
-  new CreateBook('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg')
+  new CreateBook('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg', 5),
+  new CreateBook('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp', 3),
+  new CreateBook('Jody Houser', 'Stranger Things: The Other Side (Graphic Novel)', 95, true, './images/stranger-things.jpg', 4),
+  new CreateBook('Dale Carnegie', 'How To Win Friends and Influence People', 520, true, './images/how-to-make-friends-cover.webp', 4),
+  new CreateBook('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg', 5)
 ];
 
-addBooksToPage(bookList)
+createBooks(bookList)
 
 // update book read value in array and add attach read text to the book cover based on the value.
 grid.addEventListener('click', e => {
+  const bookOnPage = e.target.closest('.book');
+  const bookId = getBookId(bookOnPage)
+  const bookInArr = getBookInArr(bookId);
+
   if (e.target.classList.contains('book__read-display')) {
-    const bookOnPage = e.target.closest('.book');
-    const bookId = getBookId(bookOnPage)
-    const bookInArr = getBookInArr(bookId);
-    bookInArr.updateReadStatus()
-    // console.log(bookInArr) - uncomment to see object update in array
+    bookInArr.updateBook('read', !bookInArr.read)
     updateCoverShadow(bookInArr, bookOnPage)
   }
+  if (e.target.classList.contains('book__star')) {
+    const starTargetIndex = +e.target.getAttribute('data-index');
+    console.log(starTargetIndex)
+    const stars = e.target.closest('.book').querySelectorAll('.book__star');
 
-  
+    unFillStars(stars);
+    tillTargetStarIndex(stars, starTargetIndex);
+    bookInArr.updateBook('ratings', starTargetIndex);
+  }
+
+  console.log(bookInArr) // - uncomment to see object update in array
 })
 
-function addBooksToPage(bookList) {
-  bookList.forEach(({
-    id, author, title, pages, read, coverPath
-  }) => {
-    const book = getBookTemplate();
-
-    // Get displays in book
-    const bookCover = book.querySelector('.book__cover');
-    const bookCoverContainer = book.querySelector('.book__cover-container');
-    const authorDisplay = book.querySelector('.book__author-display');
-    const titleDisplay = book.querySelector('.book__title-display');
-    const pagesDisplay = book.querySelector('.book__pages-display');
-    const readDisplay = book.querySelector('.book__read-display');
-
-    // update book with info from book in array
-    book.setAttribute('data-bookId', id)
-    bookCover.src = coverPath;
-    authorDisplay.innerText = author;
-    titleDisplay.innerText = title;
-    pagesDisplay.innerText = pages;
-    readDisplay.checked = read;
-
-    // check to add read text to book cover shadow
-    !read ? bookCoverContainer.setAttribute('data-read-status', '') : null;
-
-    // add to page
-    grid.appendChild(book);
-  })
+function createBooks(bookList) {
+  bookList.forEach(bookAddPage);
 }
-function getBookTemplate() {
-  return bookTemplate.content.querySelector(".book").cloneNode(true);
+function getbookCardTemplate() {
+  return bookCardTemplate.content.querySelector(".book").cloneNode(true);
 }
 
 function getBookInArr(id) {
@@ -86,6 +70,48 @@ function updateCoverShadow(bookInArr, bookOnPage) {
   } else {
     bookCoverCont.setAttribute('data-read-status', '');
   }
+}
+function unFillStars(stars) {
+  stars.forEach(star => {
+    star.classList.remove('fill');
+  });
+}
+function fillStar(star) {
+  star.classList.add('fill');
+}
+
+function tillTargetStarIndex(stars, starTargetIndex) {
+  for (let i = 0; i < starTargetIndex; i++) {
+    fillStar(stars[i]);
+  }
+}
+
+function bookAddPage(bookObj) {
+  const book = getbookCardTemplate();
+
+  // Get displays in book
+  const bookCover = book.querySelector('.book__cover');
+  const bookCoverContainer = book.querySelector('.book__cover-container');
+  const authorDisplay = book.querySelector('.book__author-display');
+  const titleDisplay = book.querySelector('.book__title-display');
+  const pagesDisplay = book.querySelector('.book__pages-display');
+  const readDisplay = book.querySelector('.book__read-display');
+  const stars = book.querySelectorAll('.book__star');
 
 
+  // update book with info from book in array
+  book.setAttribute('data-bookId', bookObj.id)
+  bookCover.src = bookObj.coverPath;
+  authorDisplay.innerText = bookObj.author;
+  titleDisplay.innerText = bookObj.title;
+  pagesDisplay.innerText = bookObj.pages;
+  readDisplay.checked = bookObj.read;
+
+  // check to add read text to book cover shadow
+  !bookObj.read ? bookCoverContainer.setAttribute('data-read-status', ''): null;
+
+  tillTargetStarIndex(stars, bookObj.ratings);
+
+  // add book to page
+  grid.appendChild(book);
 }

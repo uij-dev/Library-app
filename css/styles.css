@@ -184,8 +184,11 @@ body {
 .book__star {
   width: 2rem;
   height: 2rem;
+  path {
+    pointer-events: none;
+  }
   fill: #ccc;
-  border: 1px solid red;
+  pointer-events: auto;
 }
 
 .book__star.fill {
