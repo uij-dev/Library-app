@@ -178,6 +178,12 @@ body {
   margin-bottom: 0.6rem;
 }
 
+.book__modifiers {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .book__star-ratings {
   display: flex;
   justify-content: flex-end;
