@@ -51,6 +51,8 @@ body {
   line-height: 1.5;
   font-synthesis: none;
   text-transform: capitalize;
+  display: flex;
+  flex-direction: column;
 }
 /* =================
     COMPONENT STYLES
@@ -117,6 +119,7 @@ body {
 }
 
 .grid {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fit, 25rem);
   grid-gap: 1.5rem;
@@ -125,7 +128,6 @@ body {
   justify-content: center;
   align-items: start;
   width: min(1140px, 90%);
-  height: 100%;
   margin: 0 auto;
   padding: 3rem;
 }
