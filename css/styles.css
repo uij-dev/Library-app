@@ -185,6 +185,7 @@ body {
   width: 2rem;
   height: 2rem;
   fill: #ccc;
+  border: 1px solid red;
 }
 
 .book__star.fill {
