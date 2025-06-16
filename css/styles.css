@@ -139,7 +139,7 @@ body {
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.book__cover {
+.book__cover-container {
   height: 35rem;
   border-radius: inherit;
   overflow: hidden;
@@ -147,7 +147,7 @@ body {
   margin-bottom: 1.5rem;
 
   &::after {
-    content: attr(data-read);
+    content: attr(data-read-status);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,12 +161,12 @@ body {
   &:hover::after {
     display: none;
   }
-  &:hover > .book__img {
+  &:hover > .book__cover {
     transform: scale(1);
   }
 }
 
-.book__img {
+.book__cover {
   transform: scale(2);
   transition: transform 0.3s ease-out;
 }
