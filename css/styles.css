@@ -254,7 +254,7 @@ padding: var(--p-sm) var(--p-x-lg);
 }
 
 .form {
-  padding: var(--p-xx-lg)
+  padding: var(--p-xx-lg);
 
   & > div {
     margin-bottom: var(--m-md);
