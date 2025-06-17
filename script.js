@@ -1,4 +1,4 @@
-function CreateBook(author, title, pages, read, coverPath, ratings) {
+function Book(author, title, pages, read, coverPath, ratings) {
   if (!new.target) {
     throw Error('The "this" key is required to run a constructor')
   }
@@ -10,18 +10,18 @@ function CreateBook(author, title, pages, read, coverPath, ratings) {
   this.coverPath = coverPath;
   this.ratings = ratings;
 }
-CreateBook.prototype.updateBook = function (property, value) {
+Book.prototype.updateBook = function (property, value) {
   this[property] = value;
 }
 
 const grid = document.querySelector('.grid');
 const bookCardTemplate = document.querySelector(".book-template");
 const bookList = [
-  new CreateBook('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg', 5),
-  new CreateBook('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp', 3),
-  new CreateBook('Jody Houser', 'Stranger Things: The Other Side (Graphic Novel)', 95, true, './images/stranger-things.jpg', 4),
-  new CreateBook('Dale Carnegie', 'How To Win Friends and Influence People', 520, true, './images/how-to-make-friends-cover.webp', 4),
-  new CreateBook('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg', 5)
+  new Book('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg', 5),
+  new Book('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp', 3),
+  new Book('Jody Houser', 'Stranger Things: The Other Side (Graphic Novel)', 95, true, './images/stranger-things.jpg', 4),
+  new Book('Dale Carnegie', 'How To Win Friends and Influence People', 520, true, './images/how-to-make-friends-cover.webp', 4),
+  new Book('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg', 5)
 ];
 const form = document.querySelector('.form');
 const modal = document.querySelector('.modal');
@@ -45,11 +45,11 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   // backup validation, in case form validation fails
   if (isInvalid(authorNameInput, bookTitleInput, bookPagesInput)) {
-    alert('invalid');
+    alert('Invalid Entry!');
     return;
   }
   // create new book object from data collected and add to book list (bookList)
-  bookList.push(new CreateBook(authorNameInput.value, bookTitleInput.value, bookPagesInput.value, bookReadInput.checked, './images/body-img.jpg', 0))
+  bookList.push(new Book(authorNameInput.value, bookTitleInput.value, bookPagesInput.value, bookReadInput.checked, './images/body-img.jpg', 0))
 
   // add last book object in array to page
   bookAddPage(bookList[bookList.length - 1]);
@@ -65,7 +65,7 @@ formCancelBtn.addEventListener("click", e => {
   handelScroll('auto');
 });
 grid.addEventListener('click', e => {
-  if (e.target.classList.contains('book__read-display') || e.target.classList.contains('book__star')) {
+  if (e.target.classList.contains('book__read-display') || e.target.classList.contains('book__star') || e.target.classList.contains('book__remove-btn')) {
 
     const bookOnPage = e.target.closest('.book');
     const bookId = getBookId(bookOnPage)
@@ -83,8 +83,11 @@ grid.addEventListener('click', e => {
       tillTargetStarIndex(stars, starTargetIndex);
       bookInArr.updateBook('ratings', starTargetIndex);
     }
+    if(e.target.classList.contains('book__remove-btn')){
+      removeBook(bookList, bookInArr, bookOnPage);
+    }
 
-    console.log(bookInArr) // - uncomment to see object update in array
+    console.log(bookInArr) // show object updates
   }
 });
 
@@ -161,4 +164,11 @@ function clearForm() {
 }
 function isInvalid(authorNameInput, bookTitleInput, bookPagesInput){
   return isNaN(bookPagesInput.value) || (authorNameInput.value.trim() === "") || (bookTitleInput.value.trim() === "");
+}
+function removeBook(bookList,bookInArr, bookOnPage){
+  // remove book from bookList
+  bookList.splice(bookList.indexOf(bookInArr), 1)
+  // remove book from page
+  bookOnPage.remove()
+  console.log(bookList) // show book list
 }
