@@ -16,11 +16,11 @@ Book.prototype.updateBook = function (property, value) {
 }
 
 const bookList = [
-  new Book('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg', 5),
-  new Book('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp', 3),
-  new Book('Jody Houser', 'Stranger Things: The Other Side (Graphic Novel)', 95, true, './images/stranger-things.jpg', 4),
+  new Book('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg', 5),
   new Book('Dale Carnegie', 'How To Win Friends and Influence People', 520, true, './images/how-to-make-friends-cover.webp', 4),
-  new Book('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg', 5)
+  new Book('Jody Houser', 'Stranger Things: The Other Side (Graphic Novel)', 95, true, './images/stranger-things.jpg', 4),
+  new Book('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp', 3),
+  new Book('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg', 5),
 ];
 
 // element references 
@@ -53,10 +53,10 @@ form.addEventListener('submit', e => {
     return;
   }
   // create new book object from data collected and add to list (bookList)
-  bookList.push(new Book(authorNameInput.value, bookTitleInput.value, bookPagesInput.value, bookReadInput.checked, './images/body-img.jpg', 0))
+  bookList.unshift(new Book(authorNameInput.value, bookTitleInput.value, bookPagesInput.value, bookReadInput.checked, './images/placeholder-img.jpg', 0))
 
-  // add last book object in array to page
-  bookAddPage(bookList[bookList.length - 1]);
+  // add new book object in array to page
+  bookAddPage(bookList[0]);
   clearForm()
   handelScroll('auto');
   modal.close();
@@ -159,7 +159,7 @@ function bookAddPage(bookObj) {
   tillTargetStarIndex(stars, bookObj.ratings);
 
   // add book to page
-  grid.appendChild(book);
+  grid.insertAdjacentElement('afterbegin', book);
 }
 function handelScroll(value) {
   document.body.style.overflow = value;
