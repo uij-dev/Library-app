@@ -1,3 +1,4 @@
+// book constructor
 function Book(author, title, pages, read, coverPath, ratings) {
   if (!new.target) {
     throw Error('The "this" key is required to run a constructor')
@@ -14,8 +15,6 @@ Book.prototype.updateBook = function (property, value) {
   this[property] = value;
 }
 
-const grid = document.querySelector('.grid');
-const bookCardTemplate = document.querySelector(".book-template");
 const bookList = [
   new Book('J.k. Rowling', 'Harry Potter and The Cursed Child', 320, false, './images/harry-porter-cover.jpg', 5),
   new Book('Joe Hill', 'Black phone', 400, false, './images/black-phone-cover.webp', 3),
@@ -23,6 +22,10 @@ const bookList = [
   new Book('Dale Carnegie', 'How To Win Friends and Influence People', 520, true, './images/how-to-make-friends-cover.webp', 4),
   new Book('Callie Hart', 'Quicksilver', 622, true, './images/quick-silver-cover.jpg', 5)
 ];
+
+// element references 
+const grid = document.querySelector('.grid');
+const bookCardTemplate = document.querySelector(".book-template");
 const form = document.querySelector('.form');
 const modal = document.querySelector('.modal');
 const addBookBtn = document.querySelector('.add-book-btn');
@@ -34,13 +37,14 @@ const bookPagesInput = document.querySelector('#book-pages');
 const bookReadInput = document.querySelector('#read');
 const bookCoverInput = document.querySelector('#book-cover');
 
+createBooks(bookList) // create books when page loads
 
-createBooks(bookList)
-
+// event listeners 
 addBookBtn.addEventListener('click', e => {
   modal.showModal();
   handelScroll('hidden');
 });
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   // backup validation, in case form validation fails
@@ -48,33 +52,37 @@ form.addEventListener('submit', e => {
     alert('Invalid Entry!');
     return;
   }
-  // create new book object from data collected and add to book list (bookList)
+  // create new book object from data collected and add to list (bookList)
   bookList.push(new Book(authorNameInput.value, bookTitleInput.value, bookPagesInput.value, bookReadInput.checked, './images/body-img.jpg', 0))
 
   // add last book object in array to page
   bookAddPage(bookList[bookList.length - 1]);
-  
   clearForm()
   handelScroll('auto');
   modal.close();
 })
+
 formCancelBtn.addEventListener("click", e => {
   e.preventDefault();
   clearForm()
-  modal.close();
   handelScroll('auto');
+  modal.close();
 });
-grid.addEventListener('click', e => {
-  if (e.target.classList.contains('book__read-display') || e.target.classList.contains('book__star') || e.target.classList.contains('book__remove-btn')) {
 
+grid.addEventListener('click', e => {
+  if (isAllowed(e.target)) {
+    // variables all statements need
     const bookOnPage = e.target.closest('.book');
     const bookId = getBookId(bookOnPage)
     const bookInArr = getBookInArr(bookId);
-
+    
+    // update book cover shadow text
     if (e.target.classList.contains('book__read-display')) {
       bookInArr.updateBook('read', !bookInArr.read)
       updateCoverShadow(bookInArr, bookOnPage)
     }
+    
+    // fill stars with color
     if (e.target.classList.contains('book__star')) {
       const starTargetIndex = +e.target.getAttribute('data-index');
       const stars = e.target.closest('.book').querySelectorAll('.book__star');
@@ -83,11 +91,12 @@ grid.addEventListener('click', e => {
       tillTargetStarIndex(stars, starTargetIndex);
       bookInArr.updateBook('ratings', starTargetIndex);
     }
+    
     if(e.target.classList.contains('book__remove-btn')){
       removeBook(bookList, bookInArr, bookOnPage);
     }
-
     console.log(bookInArr) // show object updates
+    console.log(bookList) // show book list
   }
 });
 
@@ -126,7 +135,6 @@ function tillTargetStarIndex(stars, starTargetIndex) {
 }
 function bookAddPage(bookObj) {
   const book = getbookCardTemplate();
-
   // Get displays in book
   const bookCover = book.querySelector('.book__cover');
   const bookCoverContainer = book.querySelector('.book__cover-container');
@@ -170,5 +178,7 @@ function removeBook(bookList,bookInArr, bookOnPage){
   bookList.splice(bookList.indexOf(bookInArr), 1)
   // remove book from page
   bookOnPage.remove()
-  console.log(bookList) // show book list
+}
+function isAllowed(element){
+  return (element.classList.contains('book__read-display') || element.classList.contains('book__star') || element.classList.contains('book__remove-btn'))
 }
