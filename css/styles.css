@@ -31,8 +31,8 @@ input {
     VARIABLES
    ================= */
 :root {
-  --accent-transparent: rgba(0, 119, 182, 0.8);
-  --light-gray-transparent: rgba(255, 255, 255, 0.8);
+  --accent-transparent: rgba(0, 119, 182, 0.9);
+  --light-gray-transparent: rgba(255, 255, 255, 0.9);
   --pri-text: #222;
   --light-gray: #f0f4f8;
   --accent: #0077b6;
@@ -76,15 +76,17 @@ body {
     COMPONENT STYLES
    ================= */
 .header {
+  position: fixed;
+  inset: 0px 0px auto 0pc;
+  z-index: 1;
   background: linear-gradient(
       to bottom right,
       var(--accent-transparent),
       var(--light-gray-transparent)
     ),
-    url("../images/header-img.jpg") no-repeat right top/contain;
+    url("../images/header-img-removebg.png") no-repeat right top/contain;
   font-family: "playfair", Georgia, serif;
   width: min(1140px, 90%);
-  position: relative;
   box-shadow: var(--box-shadow);
   margin: 0 auto;
   padding: var(--p-x-lg);
@@ -143,7 +145,7 @@ body {
   justify-content: center;
   align-items: start;
   width: min(1140px, 90%);
-  margin: 0 auto;
+  margin: 11.3rem auto 0px;
   padding: var(--p-xx-lg) var(--p-xx-lg) 8rem;
 }
 
